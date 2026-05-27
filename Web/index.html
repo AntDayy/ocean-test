@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trắc nghiệm tính cách OCEAN</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>🔮 KHÁM PHÁ VŨ TRỤ TÍNH CÁCH 🔮</h2>
+
+        <div id="setup-section">
+            <p>Vui lòng chọn vũ trụ nhân vật bạn muốn so sánh:</p>
+            <select id="universeSelect">
+                <option value="BabyAnimals">👶 Vũ trụ Động vật Baby</option>
+                <option value="Brooklyn99">🚓 Vũ trụ Brooklyn 99</option>
+                <option value="Disney">🏰 Vũ trụ Disney</option>
+                <option value="Hogwarts">🧙‍♂️ Vũ trụ Hogwarts (Harry Potter)</option>
+                <option value="MyersBriggs">🧠 Vũ trụ Myers-Briggs</option>
+                <option value="SesameStreet">🧸 Vũ trụ Sesame Street</option>
+                <option value="StarWars">⚔️ Vũ trụ Star Wars</option>
+                <option value="Vegetables">🥦 Vũ trụ Các loại Rau Củ</option>
+            </select>
+
+            <p>Số câu hỏi bạn muốn trả lời:</p>
+            <input type="number" id="numQuestions" min="1" value="20"
+                style="padding: 10px; margin-bottom: 20px; border-radius: 5px; width: 100%; font-size: 16px; box-sizing: border-box; border: 1px solid #89b4fa; background-color: #1e1e2e; color: #cdd6f4;">
+
+            <button class="btn" style="width: 100%; background-color: #a6e3a1;" onclick="batDau()">BẮT ĐẦU TEST</button>
+        </div>
+
+        <div id="quiz-section" style="display: none; text-align: left;">
+            <div class="quiz-layout">
+                <div class="quiz-main">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="color: #cdd6f4; font-size: 14px; font-weight: bold;">Tiến độ</span>
+                        <span id="progressText" style="color: #a6e3a1; font-size: 14px; font-weight: bold;">0/0</span>
+                    </div>
+                    <div
+                        style="width: 100%; background-color: #313244; border-radius: 5px; height: 10px; margin-bottom: 20px;">
+                        <div id="progressBar"
+                            style="width: 0%; height: 100%; background-color: #a6e3a1; border-radius: 5px; transition: 0.3s;">
+                        </div>
+                    </div>
+
+                    <h2 id="questionText" style="margin-bottom: 20px; color: #f9e2af;"></h2>
+                    <div id="options-container"></div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button id="prevBtn" class="btn" style="flex: 1; background-color: #45475a; color: #cdd6f4;"
+                            onclick="cauTruocDo()">🡠 Quay lại</button>
+                        <button id="nextBtn" class="btn" style="flex: 3; background-color: #89b4fa; color: #11111b;"
+                            onclick="cauTiepTheo()"></button>
+                    </div>
+                </div>
+
+                <div class="quiz-sidebar">
+                    <div
+                        style="display: flex; justify-content: space-between; border-bottom: 1px solid #45475a; padding-bottom: 15px; margin-bottom: 15px;">
+                        <div>
+                            <p style="margin: 0; font-size: 13px; color: #a6adc8;">Số câu đã làm</p>
+                            <h3 id="answeredCount" style="margin: 5px 0 0 0; color: #a6e3a1;">0/0</h3>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="margin: 0; font-size: 13px; color: #a6adc8;">Thời gian đã làm</p>
+                            <h3 id="timerDisplay" style="margin: 5px 0 0 0; color: #89b4fa;">00:00</h3>
+                        </div>
+                    </div>
+
+                    <div id="questionGrid" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-section" style="display: none; text-align: center;">
+            <div class="result-card">
+                <h1 style="color: #f9e2af; font-size: 36px; margin-bottom: 10px;">Hoàn thành!</h1>
+                <p style="color: #a6adc8; font-size: 16px;">Bạn có nét tương đồng lớn nhất với nhân vật</p>
+                <h2 id="finalScore" style="color: #a6e3a1; font-size: 40px; margin: 10px 0;">Đang phân tích...</h2>
+
+                <div class="personality-box">
+                    <div class="personality-icon" id="personalityIcon">✨</div>
+                    <h3 id="personalityTitle" style="color: #89b4fa; font-size: 24px; margin: 10px 0;">Vũ trụ...</h3>
+                    <p id="personalityDesc" style="color: #cdd6f4; font-size: 15px; line-height: 1.6;">...</p>
+                </div>
+
+                <button class="btn"
+                    style="background-color: #f38ba8; color: #11111b; width: 200px; margin-top: 25px; font-weight: bold;"
+                    onclick="choiLai()">↺ Chơi lại từ đầu</button>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button class="btn" style="width: 100%; background-color: #f9e2af;" onclick="choiLai()">🔄 CHƠI LẠI VỚI VŨ
+                TRỤ KHÁC</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
